@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>125112121</title>
+        <link rel="icon" href="data:;base64,=">
+    </head>
+    <body>
+        <div id="app">
+            首页
+            <button onclick="aaa()">123</button>
+        </div>
+        <script type="text/javascript">
+            function aaa(){
+                console.log('123')
+                var request = new XMLHttpRequest();
+                var timeout = false;
+                var timer = setTimeout( function(){
+                    timeout = true;
+                    request.abort();
+                }, 10000 );
+                request.open( "POST", 'http://192.168.3.98/api' );
+                request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                request.onreadystatechange = function(response){
+                    if( request.readyState !== 4 ) return;
+                    if( timeout ) return;
+                    clearTimeout( timer );
+                    if( request.status === 200 ){
+                        console.log( request.response );
+                    }
+                }
+                request.send( JSON.stringify({a:1,b:2}) );
+            }
+        </script>
+    </body>
+</html>
