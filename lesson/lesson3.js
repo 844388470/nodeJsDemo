@@ -1,3 +1,5 @@
+//简单爬虫
+
 var express = require('express');
 var superagent = require('superagent');
 var cheerio = require('cheerio');
@@ -24,7 +26,8 @@ app.get('/', function (req, res, next) {
         var $element = $(element);
         items.push({
           title: $element.attr('title'),
-          href: $element.attr('href')
+          href: $element.attr('href'),
+          id:idx
         });
       });
 
